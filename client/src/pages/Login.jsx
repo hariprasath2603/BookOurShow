@@ -13,11 +13,13 @@ const Login = () => {
     try {
       const response = await LoginUser(values);
 
-      const { success, response: res } = response;
+      const { success, response: res, token } = response;
 
       // Handle the response here
       if (success) {
         messageApi.success("Login successful");
+
+        localStorage.setItem("token", token);
         setTimeout(() => {
           navigate("/");
         }, 2000);
